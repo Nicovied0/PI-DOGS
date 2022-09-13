@@ -81,27 +81,40 @@ const getAllDogs = async () => {
 
 router.get('/dogs', async (req, res) => {
   try {
+    const { name } = req.query; //requiero por body 
     const allInfo = await getAllDogs()
-    res.send(allInfo)
+    
+    if (name) {//si tengo un name desde body
+      //filtro name en toda la info y compruebo que incluya ese nombre en mayuscula y minuscula
+      const dog = allInfo.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
+
+      //si tengo el nombre, devuelvo la info, si no mando el error 
+      dog ? res.status(200).send(dog) : res.status(404).send('error en dogs/name')
+
+    } else {
+      //si no paso nombre devuelvo toda la info
+      res.send(allInfo)
+    }
+
   } catch {
-    console.log('error en get /dogs')
+    res.status(404).send('error en get /dogs')
   }
 })
 
 
 
 //Ruta get Temperaments
-router.get('/temperament', async (req, res) => {
+router.get('/temperaments', async (req, res) => {
 
-  try{
+  try {
     // Me traigo los Dogs de la api
     const temperamentApi = await axios(apiUrl)
-  
+
     // Guardo en lista de temperamentos todos los resultados despues de aplicarle limpieza a cada uno con split
     const temperaments = temperamentApi.data.map(e => e.temperament)
     const temps = temperaments.toString().split(",");
     console.log(temps)
-  
+
     // Encuentro o creo en el modelo de Temperamento, cada temperamento donde el nombre sea igual al dog en el que estoy en ese momento
     temps.forEach(el => {
       let i = el.trim()
@@ -109,10 +122,10 @@ router.get('/temperament', async (req, res) => {
         where: { name: i }
       })
     })
-  
+
     const allTemp = await Temperament.findAll(); // Me traigo todos los temperamentos de la base de datos
     res.status(200).send(allTemp);
-  }catch{
+  } catch {
     res.status(404).send('error en temperaments')
   }
 });
