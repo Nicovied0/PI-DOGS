@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const axios = require('axios');
 const { API_KEY } = process.env
-const { Dogs, Temperament } = require('../db')
+const { Dog, Temperament } = require('../db')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -18,7 +18,7 @@ const apiUrl = `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
 
 const getApi = async () => {
   const apiData = await axios(apiUrl)
-  console.log(apiData.data)
+  // console.log(apiData.data)
   const info = apiData.data.map(el => {
 
     let temperamentArray = [];
@@ -53,30 +53,35 @@ const getApi = async () => {
 
 //-- Get data from the database posgrest--//
 const getDb = async () => {
-  return await Dogs.findAll({
+  return await Dog.findAll({
     include: {
       model: Temperament,
       attributes: ['name'], //atributos que quiero traer del modelo Temperament, el id lo trae automatico
       through: {
-        attributes: [],//traer mediante los atributos del modelo
+          attributes: [],//traer mediante los atributos del modelo
       }
     }
   })
+}
+
+//combine data from API and database
+const getAllDogs = async() =>{
+  const infoApi = await getApi();
+  const infoDb = await getDb();
+  const infoAll = await infoApi.concat(infoDb)
+  //const infoAll = [...infoApi,...infoDb]
+  return infoAll
 }
 
 
 
 
 
-
-//Function get dogs
-
-
-
+//Ruta get dogs
 
 router.get('/dogs', async (req, res) => {
   try {
-    const allInfo = await getApi()
+    const allInfo = await getAllDogs()
     res.send(allInfo)
   } catch {
     console.log('error en get /dogs')
