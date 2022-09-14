@@ -101,23 +101,60 @@ router.get('/dogs', async (req, res) => {
   }
 })
 
-router.get('/dogs/:id', async(req,res) =>{
-  const {id} =  req.params
-  const allDogs = await getAllDogs()
-  const dogId = allDogs.filter(e => e.id == id) 
-  if(dogId.length){
-    res.status(200).send(dogId)
-  }else{
-    res.status(404).send('error en encontrar /Dog:id')
+router.get('/dogs/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const allDogs = await getAllDogs()
+    const dogId = allDogs.filter(e => e.id == id)
+    if (dogId.length) {
+      res.status(200).send(dogId)
+    } else {
+      res.status(404).send('error en encontrar /Dog:id')
+    }
+  } catch {
+    res.status(404).send('error en get /Dogs by id')
   }
+
 })
 
-router.post('/dog',async(req,res) =>{
+router.post("/dog", async (req, res, next) => {
+  const {
+    name,
+    height_min,
+    height_max,
+    weight_min,
+    weight_max,
+    life_span,
+    image,
+    temperaments,
+  } = req.body;
 
+  try {
+    let dogCreated = await Dog.create({
+      name,
+      height_min,
+      height_max,
+      weight_min,
+      weight_max,
+      life_span,
+      image: image ? image : "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/BLZJHTB27ZHUPKK3A7GXTMIEQA.jpg",
+    });
 
-  //https://images5.alphacoders.com/477/477929.jpg
-})
-
+    if (temperaments.length) {
+      temperaments.map(async (tem) => {
+        try {
+          let temper = await Temperament.findOrCreate({ where: { name: tem } });
+          dogCreated.addTemperament(temper[0]);
+        } catch {
+          console.log('error en find or create to temperament');
+        }
+      });
+    }
+    res.status(200).send("Dog creado!");
+  } catch {
+    res.status(404).send('Error en create dog');
+  }
+});
 
 
 //Ruta get Temperaments
