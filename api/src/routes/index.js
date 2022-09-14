@@ -117,7 +117,8 @@ router.get('/dogs/:id', async (req, res) => {
 
 })
 
-router.post("/dog", async (req, res, next) => {
+//post dog
+router.post("/dogs", async (req, res, next) => {
   const {
     name,
     height_min,
