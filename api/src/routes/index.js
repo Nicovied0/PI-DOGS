@@ -83,7 +83,7 @@ router.get('/dogs', async (req, res) => {
   try {
     const { name } = req.query; //requiero por body 
     const allInfo = await getAllDogs()
-    
+
     if (name) {//si tengo un name desde body
       //filtro name en toda la info y compruebo que incluya ese nombre en mayuscula y minuscula
       const dog = allInfo.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
@@ -99,6 +99,23 @@ router.get('/dogs', async (req, res) => {
   } catch {
     res.status(404).send('error en get /dogs')
   }
+})
+
+router.get('/dogs/:id', async(req,res) =>{
+  const {id} =  req.params
+  const allDogs = await getAllDogs()
+  const dogId = allDogs.filter(e => e.id == id) 
+  if(dogId.length){
+    res.status(200).send(dogId)
+  }else{
+    res.status(404).send('error en encontrar /Dog:id')
+  }
+})
+
+router.post('/dog',async(req,res) =>{
+
+
+  //https://images5.alphacoders.com/477/477929.jpg
 })
 
 
