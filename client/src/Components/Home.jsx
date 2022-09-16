@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllDogs } from "../Redux/actions";
+import style from "../Css/Home.module.css";
 
 import Card from "./Card";
 
@@ -21,21 +22,35 @@ const Home = () => {
   } else if (allDogs.length) {
     console.log("este es el array", allDogs);
     return (
-      <div >
+      <div>
         <h1>Home app</h1>
-        {allDogs?.map((i) => {
-          return (
-            <div>
-              <div>
-                <Card name={i.name} image={i.image} key={i.id} id={i.id}></Card>
+        <div className={style.containerBox}>
+          {allDogs?.map((i) => {
+            return (
+              <div className={style.containerCard}>
+                <div>
+                  <Card
+                    name={i.name}
+                    image={i.image}
+                    key={i.id}
+                    id={i.id}
+                  ></Card>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     );
   } else {
-    return <h2>Cargando</h2>;
+    return (
+      <div className={style.ldsEllipsis}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    );
   }
 };
 
