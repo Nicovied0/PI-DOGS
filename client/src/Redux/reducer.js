@@ -1,4 +1,6 @@
 
+
+
 const intialState = {
   dogs: [],
 }
@@ -9,9 +11,9 @@ const rootReducer = (state = intialState, action) => {
       return {
         ...state,
         dogs: action.payload,
-        allDogs: action.payload,
-      };
-      default:
+        
+      }
+    default:
       return state;
   }
 };

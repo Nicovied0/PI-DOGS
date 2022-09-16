@@ -1,12 +1,19 @@
 import React from "react";
+import style from "../Css/Card.module.css";
 
-const Card = (image, name) => {
+const Card = ({ image, name }) => {
   return (
-    <div>
-      <div>
-        <img src={`${image}`} alt={`imagen de: ${name}`} />
+    <div className={style.main_container}>
+      <div className={style.image_container}>
+        <img
+          className={style.img}
+          src={`${image}`}
+          alt={`imagen de: ${name}`}
+        />
+        <h2>{name}</h2>
       </div>
-      <h2>{name}</h2>
+      
+      
     </div>
   );
 };

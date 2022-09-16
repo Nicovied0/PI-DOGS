@@ -1,7 +1,7 @@
 import React from "react";
+// import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { getAllDogs } from "../Redux/actions";
 
 import Card from "./Card";
@@ -17,32 +17,23 @@ const Home = () => {
   }, [dispatch]);
 
   if (!allDogs) {
+    return <h2>Error 404</h2>;
+  } else if (allDogs.length) {
+    console.log("este es el array", allDogs);
     return (
-      <div>
-        <h2>Error 404</h2>
+      <div >
+        <h1>Home app</h1>
+        {allDogs?.map((i) => {
+          return (
+            <div>
+              <div>
+                <Card name={i.name} image={i.image} key={i.id} id={i.id}></Card>
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
-  } else if(allDogs.length) {
-    return (
-      
-      <div>HOME</div>
-    {
-      allDogs?.map((e)=>{
-        <div>
-              <Link to={"/details/" + i.id}>
-                <Card
-                  name={i.name}
-                  image={i.image}
-                  nickName={i.nickName}
-                  key={i.id}
-                  id={i.id}
-                ></Card>
-              </Link>
-            </div>
-      })
-    
-      }
-      )
   } else {
     return <h2>Cargando</h2>;
   }
