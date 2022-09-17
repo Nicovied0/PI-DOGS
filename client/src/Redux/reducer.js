@@ -15,11 +15,9 @@ const rootReducer = (state = intialState, action) => {
         
       }
       case "SHOW_DOG_DETAILS":
-      let myDetails = action.payload
-      
       return {
         ...state,
-        details: myDetails
+        details: action.payload
       };
     default:
       return state;

@@ -1,12 +1,12 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllDogs } from "../Redux/actions";
+import { Link } from "react-router-dom";
 import style from "../Css/Home.module.css";
 
 import Card from "./Card";
-import { Link } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,6 +24,7 @@ const Home = () => {
     console.log("este es el array", allDogs);
     return (
       <div className={style.home}>
+        <NavBar></NavBar>
         <h1>Home app</h1>
         <div className={style.containerBox}>
           {allDogs?.map((i) => {
