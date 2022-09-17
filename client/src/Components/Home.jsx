@@ -6,6 +6,7 @@ import { getAllDogs } from "../Redux/actions";
 import style from "../Css/Home.module.css";
 
 import Card from "./Card";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -29,12 +30,16 @@ const Home = () => {
             return (
               <div className={style.containerCard}>
                 <div>
-                  <Card
-                    name={i.name}
-                    image={i.image}
-                    key={i.id}
-                    id={i.id}
-                  ></Card>
+                  <Link to={"/details/" + i.id}>
+                    {
+                      <Card
+                        name={i.name}
+                        image={i.image}
+                        key={i.id}
+                        id={i.id}
+                      ></Card>
+                    }
+                  </Link>
                 </div>
               </div>
             );
