@@ -22,7 +22,7 @@ const Home = () => {
   } else if (allDogs.length) {
     console.log("este es el array", allDogs);
     return (
-      <div>
+      <div className={style.home}>
         <h1>Home app</h1>
         <div className={style.containerBox}>
           {allDogs?.map((i) => {

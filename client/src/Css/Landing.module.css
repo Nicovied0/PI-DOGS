@@ -1,0 +1,41 @@
+.container {
+  background-image: url("../Assets/shiva.png");
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+}
+.divLanding {
+  display: flex;
+  position: absolute;
+  top: 40%;
+  left: 15%;
+  flex-direction: column;
+  align-items: center;
+}
+.title {
+  color: #fff;
+  font-size: 4rem;
+  display: flex;
+}
+
+.butonLanding {
+  font-size: 1rem;
+  font-weight: 200;
+  background-color: #00000000;
+  display: inline-block;
+  padding: 1em 3em;
+  border: 0.2em solid #ffffff82;
+  margin:0 1em 1em 0;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+}
+.butonLanding:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
