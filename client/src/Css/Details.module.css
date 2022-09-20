@@ -1,0 +1,25 @@
+.main_container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.sub_container {
+  background-color: #152f59;
+  padding: 3rem;
+  border-radius: 5%;
+  /* max-width: 40%;
+  max-height: 38%; */
+  width: 25rem;
+  height: 35rem;
+  
+}
+.container_elements {
+  align-items: center;
+}
+h1 {
+  font-size: 2.3rem;
+}
+img {
+  max-width: 100%;
+}
