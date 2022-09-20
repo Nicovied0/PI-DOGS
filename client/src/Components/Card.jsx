@@ -8,7 +8,8 @@ const Card = ({ image, name }) => {
         <img
           className={style.img}
           src={`${image}`}
-          alt={`imagen de: ${name}`}
+          alt={`imagen de: ${name}` }
+          
         />
         <h2>{name}</h2>
       </div>

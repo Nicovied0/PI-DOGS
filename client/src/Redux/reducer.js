@@ -3,7 +3,7 @@
 
 const intialState = {
   dogs: [],
-  details: [],  
+  details: []
 }
 
 const rootReducer = (state = intialState, action) => {

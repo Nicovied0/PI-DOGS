@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllDogs } from "../Redux/actions";
 import { Link } from "react-router-dom";
 import style from "../Css/Home.module.css";
+import Loader from "./Loader";
 
 import Card from "./Card";
 import NavBar from "./NavBar";
@@ -50,12 +51,7 @@ const Home = () => {
     );
   } else {
     return (
-      <div className={style.ldsEllipsis}>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <Loader/>
     );
   }
 };
