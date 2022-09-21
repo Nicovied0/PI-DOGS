@@ -12,7 +12,12 @@
   max-height: 38%; */
   width: 25rem;
   height: 35rem;
-  
+}
+.imgBack {
+  float: right;
+  size: 1rem;
+  width: 3rem;
+  margin-bottom: 1rem;
 }
 .container_elements {
   align-items: center;

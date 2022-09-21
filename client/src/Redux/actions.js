@@ -33,3 +33,19 @@ export function showDogDetails(id) {
     }
 
 };
+
+export function getDogByName(payload) {//dogs by name
+    return async function (dispatch) {//Dispatch que podemos usar gracias a la asincronia provista por el middleware 
+        try {
+            var json = await axios.get(`http://localhost:3001/dogs?name=${payload}`) //axios.get(`${urlMyApi}/dogs?name=${payload}`)
+            return dispatch({
+                type: "GET_DOG",
+                payload: json.data
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+};
+
+// /dogs?name=${payload}`

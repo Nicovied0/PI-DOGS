@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { showDogDetails } from "../Redux/actions";
-
+import { Link } from "react-router-dom";
+import back from "../Assets/back.png";
 import style from "../Css/Details.module.css";
 import Loader from "./Loader";
 
@@ -39,20 +40,25 @@ const Details = (props) => {
     return (
       <div className={`${style.main_container}`}>
         <div className={`${style.sub_container}`}>
-          <div className={`${style.container_elements}`}>
-            <div className={`${style.image_container}`}>
-              <img src={imageDog} alt={`imagen de ${nameDog}`} />
-            </div>
+            <Link to={"/home/"}>
+              <img alt='backIcon' src={back} className={`${style.imgBack}`} />
+            </Link>
+          <div>
+            <div className={`${style.container_elements}`}>
+              <div className={`${style.image_container}`}>
+                <img src={imageDog} alt={`imagen de ${nameDog}`} />
+              </div>
 
-            <div className={`${style.right_container}`}>
-              <h1>{nameDog}</h1>
-              <h3>{`Altura : ${heightDog && heightDog[0]} - ${
-                heightDog && heightDog[1]
-              } CM`}</h3>
-              <h3>{`Peso : ${heightDog && weightDog[0]} - ${
-                weightDog && weightDog[1]
-              } KG`}</h3>
-              <h3>{`Esperanza de vida : ${lifeSpanDog}`}</h3>
+              <div className={`${style.right_container}`}>
+                <h1>{nameDog}</h1>
+                <h3>{`Altura : ${heightDog && heightDog[0]} - ${
+                  heightDog && heightDog[1]
+                } CM`}</h3>
+                <h3>{`Peso : ${heightDog && weightDog[0]} - ${
+                  weightDog && weightDog[1]
+                } KG`}</h3>
+                <h3>{`Esperanza de vida : ${lifeSpanDog}`}</h3>
+              </div>
             </div>
           </div>
         </div>
