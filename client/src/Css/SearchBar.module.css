@@ -2,17 +2,16 @@
   height: 2.4rem;
   width: 200%;
   display: flex;
-  align-items: stretch;
+  align-items: center;
 }
 
 .searchbar {
   height: 100%;
   font-size: 1.3rem;
-  border: 1px solid #152f59;
-  border-top: none;
-  outline: none;
+  border: 2px solid #152f59;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
+  margin: 0.5rem;
 }
 
 .searchbar_button {
