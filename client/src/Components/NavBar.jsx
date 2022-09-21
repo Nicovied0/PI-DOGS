@@ -3,6 +3,7 @@ import style from "../Css/NavBar.module.css";
 import logo from "../Assets/logo.jpg";
 import SearchBar from "./SearchBar";
 
+
 const NavBar = () => {
   return (
     <div className={style.containerDiv}>
@@ -29,9 +30,11 @@ const NavBar = () => {
           <option value="min_weight">Min</option>
         </select>
         <select>
-        <option disabled selected defaultValue>Temperamentos</option>
-                  <option value="Todos">Todos</option>
-                  {/* {
+          <option disabled selected defaultValue>
+            Temperamentos
+          </option>
+          <option value="Todos">Todos</option>
+          {/* {
                     allTemperaments?.map(temp => (
                         <option value={temp.name}  key={temp.id}>{temp.name}</option>
                     ))

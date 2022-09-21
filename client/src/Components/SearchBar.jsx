@@ -31,13 +31,11 @@ const SearchBar = () => {
         className={`${style.searchbar_button}`}
         type="submit"
         onClick={handleSubmit}
-        
       >
-        <img src={search}></img>
+        <img alt="search" src={search}></img>
       </button>
     </div>
   );
-  
 };
 
 export default SearchBar;

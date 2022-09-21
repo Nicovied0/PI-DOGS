@@ -8,6 +8,7 @@ import style from "../Css/Home.module.css";
 import Loader from "./Loader";
 import Card from "./Card";
 import NavBar from "./NavBar";
+import Footer from "./Footer";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,11 @@ const Home = () => {
     console.log("este es el array", allDogs);
     return (
       <div className={style.home}>
-        <NavBar/>
+        <NavBar />
+        <div className={style.footerDiv}>
+          <Footer className={style.footerDiv} />
+        </div>
+
         <div className={style.containerBox}>
           {allDogs?.map((i) => {
             return (
