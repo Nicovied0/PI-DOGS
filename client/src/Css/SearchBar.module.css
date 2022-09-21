@@ -1,13 +1,14 @@
 .searchbar_container{
   height: 30px;
   width: 200%;
+  display: flex;
+  align-items: stretch;
 }
 
 .searchbar{
   height: 100%;
-  width: 47%;
   font-size: 1.3rem;
-  border: 1px solid #25b687;
+  border: 1px solid #152f59;
   border-top: none;
   outline: none;
   border-bottom-left-radius: 10px;
@@ -15,13 +16,12 @@
 }
 
 .searchbar_button{
+  color: #fff;
   border-radius: 0;
-  height: 116%;
+  height: 100%;
   width: 4rem;
-  background-color: #25b687;
-  /* border-top: 2px solid gray; */
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  background-color: #152f59;
+  /* border-top: 2px solid gray; */ 
 }
 
 .searchbar_button i{

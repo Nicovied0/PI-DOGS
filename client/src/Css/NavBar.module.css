@@ -1,7 +1,7 @@
 .containerDiv {
   display: flex;
   height: 7rem;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-around;
 }
 .logoDiv {

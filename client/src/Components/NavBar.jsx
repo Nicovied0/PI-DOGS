@@ -10,10 +10,10 @@ const NavBar = () => {
         <img alt="logo" src={logo} className={style.logo} />
         <h1>DOG APP</h1>
       </div>
-      <div>
+      <div className={style.logoDiv}>
         <SearchBar />
       </div>
-      <div>
+      <div className={style.logoDiv}>
         <select></select>
         <select></select>
         <select></select>

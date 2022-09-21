@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import style from "../Css/SearchBar.module.css";
+import search from "../Assets/search.svg";
 import { getDogByName } from "../Redux/actions";
 import { useDispatch } from "react-redux";
 
@@ -31,7 +32,7 @@ const SearchBar = () => {
         type="submit"
         onClick={handleSubmit}
       >
-        <i className="fa-solid fa-magnifying-glass"></i>
+        <img src={search}></img>
       </button>
     </div>
   );
