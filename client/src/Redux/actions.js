@@ -34,6 +34,7 @@ export function showDogDetails(id) {
 
 };
 
+
 export function getDogByName(payload) {//dogs by name
     return async function (dispatch) {//Dispatch que podemos usar gracias a la asincronia provista por el middleware 
         try {
@@ -48,4 +49,10 @@ export function getDogByName(payload) {//dogs by name
     }
 };
 
-// /dogs?name=${payload}`
+
+export function OrderByName(payload) {
+    return { 
+        type: "ORDER_BY_NAME",
+        payload
+    }
+};
