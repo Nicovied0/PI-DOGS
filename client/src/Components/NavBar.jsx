@@ -14,9 +14,29 @@ const NavBar = () => {
         <SearchBar />
       </div>
       <div className={style.logoDiv}>
-        <select></select>
-        <select></select>
-        <select></select>
+        <select>
+          <option disabled selected defaultValue>
+            Orden Alfabético
+          </option>
+          <option value="A-Z">A-Z</option>
+          <option value="Z-A">Z-A</option>
+        </select>
+        <select>
+          <option disabled selected defaultValue>
+            Filtrar por peso
+          </option>
+          <option value="max_weight">Max</option>
+          <option value="min_weight">Min</option>
+        </select>
+        <select>
+        <option disabled selected defaultValue>Temperamentos</option>
+                  <option value="Todos">Todos</option>
+                  {/* {
+                    allTemperaments?.map(temp => (
+                        <option value={temp.name}  key={temp.id}>{temp.name}</option>
+                    ))
+                  } */}
+        </select>
       </div>
     </div>
   );

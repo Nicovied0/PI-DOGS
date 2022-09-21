@@ -25,17 +25,19 @@ const SearchBar = () => {
         className={`${style.searchbar}`}
         type="text"
         onChange={handleInput}
-        placeholder="Search..."
+        placeholder="Buscar..."
       />
       <button
         className={`${style.searchbar_button}`}
         type="submit"
         onClick={handleSubmit}
+        
       >
         <img src={search}></img>
       </button>
     </div>
   );
+  
 };
 
 export default SearchBar;
