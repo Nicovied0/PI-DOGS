@@ -1,11 +1,11 @@
-.searchbar_container{
-  height: 30px;
+.searchbar_container {
+  height: 2.4rem;
   width: 200%;
   display: flex;
   align-items: stretch;
 }
 
-.searchbar{
+.searchbar {
   height: 100%;
   font-size: 1.3rem;
   border: 1px solid #152f59;
@@ -15,15 +15,14 @@
   border-top-left-radius: 10px;
 }
 
-.searchbar_button{
+.searchbar_button {
   color: #fff;
   border-radius: 0;
   height: 100%;
   width: 4rem;
   background-color: #152f59;
-  /* border-top: 2px solid gray; */ 
 }
 
-.searchbar_button i{
-  font-size: 1.3rem;
+.searchbar_button img {
+  max-width: 90%;
 }

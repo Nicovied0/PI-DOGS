@@ -25,8 +25,7 @@ const Home = () => {
     console.log("este es el array", allDogs);
     return (
       <div className={style.home}>
-        <NavBar></NavBar>
-        <h1>Home app</h1>
+        <NavBar/>
         <div className={style.containerBox}>
           {allDogs?.map((i) => {
             return (
