@@ -12,21 +12,21 @@ export function getAllDogs() {
 
 };
 
-// export function getTemperaments() {
-//     return async function (dispatch) {
-//         var json = await axios.get(`/temperament`); //axios.get(`${urlMyApi}/temperament`)
-//         return dispatch({
-//             type: "GET_TEMPERAMENTS",
-//             payload: json.data,
-//         });
-//       }  
-//   };
+export function getTemperaments() {
+    return async function (dispatch) {
+        var json = await axios.get(`/temperament`); //axios.get(`${urlMyApi}/temperament`)
+        return dispatch({
+            type: "GET_TEMPERAMENTS",
+            payload: json.data,
+        });
+      }  
+  };
 
 export function showDogDetails(id) {
     return async function (dispatch) {
         let res = await axios.get(`http://localhost:3001/dogs/${id}`)
         return dispatch({
-            type: "SHOW_DOG_DETAILS",
+            type: "DOG_DETAILS",
             payload: res.data
         });
 
@@ -40,7 +40,7 @@ export function getDogByName(payload) {//dogs by name
         try {
             var json = await axios.get(`http://localhost:3001/dogs?name=${payload}`) //axios.get(`${urlMyApi}/dogs?name=${payload}`)
             return dispatch({
-                type: "GET_DOG",
+                type: "GET_DOG_BY_NAME",
                 payload: json.data
             })
         } catch (error) {

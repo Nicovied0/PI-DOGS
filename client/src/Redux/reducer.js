@@ -21,12 +21,12 @@ const rootReducer = (state = intialState, action) => {
         temperaments: filteresTemp,
       };
 
-    case "SHOW_DOG_DETAILS":
+    case "DOG_DETAILS":
       return {
         ...state,
         details: action.payload
       };
-    case "GET_DOG":
+    case "GET_DOG_BY_NAME":
       return {
         ...state,
         dogs: action.payload

@@ -2,6 +2,7 @@ import React from "react";
 import style from "../Css/NavBar.module.css";
 import logo from "../Assets/logo.jpg";
 import SearchBar from "./SearchBar";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -12,6 +13,9 @@ const NavBar = () => {
       </div>
       <div className={style.logoDiv}>
         <SearchBar />
+      </div>
+      <div className={style.logoDiv}>
+        <Link to={'/dog'}><button>Crear Perro</button></Link>
       </div>
     </div>
   );
