@@ -14,6 +14,13 @@ const rootReducer = (state = intialState, action) => {
         dogs: action.payload,
 
       }
+    case "GET_TEMPERAMENTS":
+      const filteresTemp = action.payload.filter((temp) => temp.name !== ""); //eliminar razas con strings vacios
+      return {
+        ...state,
+        temperaments: filteresTemp,
+      };
+
     case "SHOW_DOG_DETAILS":
       return {
         ...state,
@@ -49,7 +56,6 @@ const rootReducer = (state = intialState, action) => {
         ...state,
         dogs: sortedName,
       };
-
     default:
       return state;
   }

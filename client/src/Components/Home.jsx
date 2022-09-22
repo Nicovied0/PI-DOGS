@@ -13,7 +13,7 @@ import Footer from "./Footer";
 const Home = () => {
   const dispatch = useDispatch();
   const allDogs = useSelector((e) => e.dogs); //valores del estado global de redux que requiero
-  // const allTemperaments = useSelector((state) => state.temperaments);
+  const allTemperaments = useSelector((state) => state.temperaments);
 
   //estados para ordenar
   const [orden, setOrden] = useState("");
@@ -29,6 +29,12 @@ const Home = () => {
     dispatch(OrderByName(e.target.value));
     setOrden(`Ordenado ${e.target.value}`);
   };
+
+  // const handleOrderByWeight = (e) => {
+  //   e.preventDefault();
+  //   dispatch(OrderByWeight(e.target.value));
+  //   setOrden(`Ordenado ${e.target.value}`);
+  // };
 
   if (!allDogs) {
     return <h2>Error 404</h2>;
@@ -59,11 +65,11 @@ const Home = () => {
               Temperamentos
             </option>
             <option value="Todos">Todos</option>
-            {/* {
+            {
                     allTemperaments?.map(temp => (
                         <option value={temp.name}  key={temp.id}>{temp.name}</option>
                     ))
-                  } */}
+                  }
           </select>
         </div>
         <div className={style.footerDiv}>
@@ -82,6 +88,7 @@ const Home = () => {
                         image={i.image}
                         key={i.id}
                         id={i.id}
+                        temperaments={i.temperaments}
                       ></Card>
                     }
                   </Link>

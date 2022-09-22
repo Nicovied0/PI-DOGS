@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../Css/Card.module.css";
 
-const Card = ({ image, name }) => {
+const Card = ({ image, name,temperaments }) => {
   return (
     <div className={style.main_container}>
       <div className={style.image_container}>

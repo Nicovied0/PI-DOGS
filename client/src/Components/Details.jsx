@@ -19,6 +19,7 @@ const Details = (props) => {
 
   let nameDog,
     imageDog = [],
+    temperaments,
     heightDog,
     weightDog,
     lifeSpanDog;
@@ -30,6 +31,7 @@ const Details = (props) => {
     heightDog = details[0].height;
     weightDog = details[0].weight;
     lifeSpanDog = details[0].life_span;
+    temperaments = details[0].temperaments;
   }
   if (!details) {
     return <h2>Error</h2>;
@@ -40,9 +42,9 @@ const Details = (props) => {
     return (
       <div className={`${style.main_container}`}>
         <div className={`${style.sub_container}`}>
-            <Link to={"/home/"}>
-              <img alt='backIcon' src={back} className={`${style.imgBack}`} />
-            </Link>
+          <Link to={"/home/"}>
+            <img alt="backIcon" src={back} className={`${style.imgBack}`} />
+          </Link>
           <div>
             <div className={`${style.container_elements}`}>
               <div className={`${style.image_container}`}>
@@ -58,6 +60,8 @@ const Details = (props) => {
                   weightDog && weightDog[1]
                 } KG`}</h3>
                 <h3>{`Esperanza de vida : ${lifeSpanDog}`}</h3>
+                <h2>Temeramentos</h2>
+                <h3>{temperaments.map((temps) => `  ${temps}   `)}</h3>
               </div>
             </div>
           </div>
