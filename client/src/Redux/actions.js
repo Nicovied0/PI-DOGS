@@ -14,13 +14,13 @@ export function getAllDogs() {
 
 export function getTemperaments() {
     return async function (dispatch) {
-        var json = await axios.get(`/temperament`); //axios.get(`${urlMyApi}/temperament`)
+        var json = await axios.get(`http://localhost:3001/temperaments`);
         return dispatch({
             type: "GET_TEMPERAMENTS",
             payload: json.data,
         });
-      }  
-  };
+    }
+};
 
 export function showDogDetails(id) {
     return async function (dispatch) {
@@ -51,8 +51,15 @@ export function getDogByName(payload) {//dogs by name
 
 
 export function OrderByName(payload) {
-    return { 
+    return {
         type: "ORDER_BY_NAME",
         payload
     }
 };
+
+export function postDog(payload) {
+    return async function () {
+        const data = await axios.post("http://localhost:3001/dog", payload); //axios.post("http://localhost:3001/dog"
+        return data;
+    }
+}

@@ -118,7 +118,7 @@ router.get('/dogs/:id', async (req, res) => {
 })
 
 //post dog
-router.post("/dogs", async (req, res, next) => {
+router.post("/dog", async (req, res, next) => {
   const {
     name,
     height_min,
@@ -168,7 +168,7 @@ router.get('/temperaments', async (req, res) => {
     // Guardo en lista de temperamentos todos los resultados despues de aplicarle limpieza a cada uno con split
     const temperaments = temperamentApi.data.map(e => e.temperament)
     const temps = temperaments.toString().split(",");
-    console.log(temps)
+    // console.log(temps)
 
     // Encuentro o creo en el modelo de Temperamento, cada temperamento donde el nombre sea igual al dog en el que estoy en ese momento
     temps.forEach(el => {
