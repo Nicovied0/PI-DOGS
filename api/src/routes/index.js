@@ -86,10 +86,10 @@ router.get('/dogs', async (req, res) => {
 
     if (name) {//si tengo un name desde body
       //filtro name en toda la info y compruebo que incluya ese nombre en mayuscula y minuscula
-      const dog = allInfo.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
+      let dog = allInfo.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
 
       //si tengo el nombre, devuelvo la info, si no mando el error 
-      dog ? res.status(200).send(dog) : res.status(404).send('error en dogs/name')
+      dog.length ? res.status(200).send(dog) : res.status(404).send('error en dogs/na  me')
 
     } else {
       //si no paso nombre devuelvo toda la info
@@ -118,45 +118,44 @@ router.get('/dogs/:id', async (req, res) => {
 })
 
 //post dog
-router.post("/dog", async (req, res, next) => {
-  const {
-    name,
-    height_min,
-    height_max,
-    weight_min,
-    weight_max,
-    life_span,
-    image,
-    temperaments,
-  } = req.body;
+router.post("/dog", async (req, res) => {
+  let {
+   name,
+   min_height,
+   max_height,
+   min_weight,
+   max_weight,
+   life_span,
+   temperaments,
+   image
+  } = req.body
 
-  try {
-    let dogCreated = await Dog.create({
-      name,
-      height_min,
-      height_max,
-      weight_min,
-      weight_max,
-      life_span,
-      image: image ? image : "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/BLZJHTB27ZHUPKK3A7GXTMIEQA.jpg",
-    });
+  const fixedHeight = []
+  const minHeight = min_height;
+  const maxHeight = max_height;
+  fixedHeight.push(minHeight, maxHeight)
 
-    if (temperaments.length) {
-      temperaments.map(async (tem) => {
-        try {
-          let temper = await Temperament.findOrCreate({ where: { name: tem } });
-          dogCreated.addTemperament(temper[0]);
-        } catch {
-          console.log('error en find or create to temperament');
-        }
-      });
-    }
-    res.status(200).send("Dog creado!");
-  } catch {
-    res.status(404).send('Error en create dog');
-  }
-});
+  const fixedWeight = []
+  const minWeight = min_weight;
+  const maxWeight = max_weight;
+  fixedWeight.push(minWeight, maxWeight)
 
+  let dog = await Dog.create({
+   name,
+   height: fixedHeight,
+   weight: fixedWeight,
+   life_span,
+   image: image ? image : "https://www.publicdomainpictures.net/pictures/260000/velka/dog-face-cartoon-illustration.jpg",
+  })
+
+  let associatedTemp = await Temperament.findAll({
+      where: { name: temperaments},
+  })
+
+  dog.addTemperament(associatedTemp);
+
+  res.status(200).send("Dog created succesfully!")
+})
 
 //Ruta get Temperaments
 router.get('/temperaments', async (req, res) => {

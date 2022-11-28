@@ -13,12 +13,18 @@
   border-top-left-radius: 10px;
   margin: 0.5rem;
 }
+.form {
+  display: flex;
+  flex-direction: row;
+  height: 1.7rem;
+}
 
 .searchbar_button {
   color: #fff;
   border-radius: 0;
   height: 100%;
   width: 4rem;
+  margin: 0 1rem;
   background-color: #152f59;
 }
 

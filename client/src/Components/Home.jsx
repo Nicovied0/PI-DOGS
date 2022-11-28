@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllDogs, OrderByName } from "../Redux/actions";
+import { getAllDogs, OrderByName, getTemperaments } from "../Redux/actions";
 import { Link } from "react-router-dom";
 import style from "../Css/Home.module.css";
 
@@ -21,6 +21,7 @@ const Home = () => {
   useEffect(() => {
     //acciones a depachar luego de montar el componente
     dispatch(getAllDogs());
+    dispatch(getTemperaments())
   }, [dispatch]);
 
   //ordenar por nombre
@@ -45,7 +46,9 @@ const Home = () => {
         <NavBar />
 
         <div className={`${style.container_filters}`}>
-          <select onChange={handleOrderByName}>
+          <select onChange={(e) =>{
+            handleOrderByName(e)
+          }}>
             <option disabled selected defaultValue>
               Alphabetical order
             </option>
@@ -53,7 +56,7 @@ const Home = () => {
             <option value="Z-A">Z-A</option>
           </select>
 
-          <select>
+          <select >
             <option disabled selected defaultValue>
               Filter by weight
             </option>

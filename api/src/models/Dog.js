@@ -14,24 +14,17 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    height_min: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    height: {
+      type: DataTypes.ARRAY(DataTypes.STRING),//al enviar los datos por medio del body se hace con un array
+      allowNull: false
     },
-    height_max: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    weight_min: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    weight_max: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    weight: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false
     },
     life_span: {
       type: DataTypes.STRING,
+      allowNull: true
     },
     image: {
       type:DataTypes.STRING,

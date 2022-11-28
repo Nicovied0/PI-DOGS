@@ -31,7 +31,9 @@ const Details = (props) => {
     heightDog = details[0].height;
     weightDog = details[0].weight;
     lifeSpanDog = details[0].life_span;
-    temperaments = details[0].temperaments;
+    temperaments = details[0].temperaments ? details[0].temperaments:  details[0].temperaments[0].name;
+    console.log(details[0].temperaments)
+    
   }
   if (!details) {
     return <h2>Error</h2>;
@@ -61,7 +63,7 @@ const Details = (props) => {
                 } KG`}</h3>
                 <h3>{`Esperanza de vida : ${lifeSpanDog}`}</h3>
                 <h2>Temeramentos</h2>
-                <h3>{temperaments.map((temps) => `  ${temps}   `)}</h3>
+                <h3>{temperaments.map(temps => `  ${temps}   `)}</h3>
               </div>
             </div>
           </div>

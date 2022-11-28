@@ -44,6 +44,7 @@ export function getDogByName(payload) {//dogs by name
                 payload: json.data
             })
         } catch (error) {
+            alert(`No country was found that includes "${payload}".`)
             console.log(error);
         }
     }

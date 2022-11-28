@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "../Css/SearchBar.module.css";
-import search from "../Assets/search.svg";
+// import search from "../Assets/search.svg";
 import { getDogByName } from "../Redux/actions";
 import { useDispatch } from "react-redux";
 
@@ -8,32 +8,39 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const [searchDog, setSearchDog] = useState("");
 
-  const handleInput = (e) => {
+  
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (searchDog.length === 0) return alert("Ingrese algun nombre");
+    dispatch(getDogByName(searchDog));
+    setSearchDog("")
+    
+  };
+  const onChangeInput = (e) => {
     e.preventDefault();
     setSearchDog(e.target.value);
-  };
+    
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(getDogByName(searchDog));
   };
-
+  
   console.log(searchDog);
   return (
     <div className={style.searchbar_container}>
-      <input
-        className={`${style.searchbar}`}
-        type="text"
-        onChange={handleInput}
-        placeholder="Buscar..."
-      />
-      <button
-        className={`${style.searchbar_button}`}
-        type="submit"
-        onClick={handleSubmit}
-      >
-        <img alt="search" src={search}></img>
-      </button>
+      <form className={style.form}>
+        <input
+          className={`${style.searchbar}`}
+          type="text"
+          onChange={onChangeInput}
+          placeholder="Buscar..."
+          value={searchDog}
+        />
+        <input
+          className={`${style.searchbar_button}`}
+          type="submit"
+          onClick={onSubmit}
+          value="Go"
+        ></input>
+      </form>
     </div>
   );
 };

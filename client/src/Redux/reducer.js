@@ -3,19 +3,23 @@
 
 const intialState = {
   dogs: [],
-  details: []
+  allDogs:[],
+  details: [],
 }
 
 const rootReducer = (state = intialState, action) => {
   switch (action.type) {
+
     case "GET_ALL_DOGS":
       return {
         ...state,
         dogs: action.payload,
+        allDogs: action.payload,
 
       }
+
     case "GET_TEMPERAMENTS":
-      const filteresTemp = action.payload.filter((temp) => temp.name !== ""); //eliminar razas con strings vacios
+      let filteresTemp = action.payload.filter((temp) => temp.name !== ""); //eliminar razas con strings vacios
       return {
         ...state,
         temperaments: filteresTemp,
@@ -26,15 +30,17 @@ const rootReducer = (state = intialState, action) => {
         ...state,
         details: action.payload
       };
+
     case "GET_DOG_BY_NAME":
       return {
         ...state,
         dogs: action.payload
       };
+
     case "ORDER_BY_NAME":
-      const sortedName =
+      let orderByName =
         action.payload === "A-Z"
-          ? state.allDogs.sort((a, b) => {
+          ? state.dogs.sort((a, b) => {
             if (a.name > b.name) {
               return 1;
             }
@@ -43,7 +49,7 @@ const rootReducer = (state = intialState, action) => {
             }
             return 0;
           })
-          : state.allDogs.sort((a, b) => {
+          : state.dogs.sort((a, b) => {
             if (a.name > b.name) {
               return -1;
             }
@@ -54,8 +60,9 @@ const rootReducer = (state = intialState, action) => {
           });
       return {
         ...state,
-        dogs: sortedName,
+        dogs: orderByName,
       };
+
     default:
       return state;
   }
