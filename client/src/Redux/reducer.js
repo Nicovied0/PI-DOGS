@@ -3,7 +3,7 @@
 
 const intialState = {
   dogs: [],
-  allDogs:[],
+  allDogs: [],
   details: [],
 }
 
@@ -62,6 +62,31 @@ const rootReducer = (state = intialState, action) => {
         ...state,
         dogs: orderByName,
       };
+
+    case "ORDER_BY_WEIGHT":
+      let orderByWeight = action.payload === "MIN_WEIGHT" ? state.dogs.sort((a, b) => {
+        if (parseInt(a.weight[1]) > parseInt(b.weight[1])) {
+          return 1;
+        }
+        if (parseInt(b.weight[1]) > parseInt(a.weight[1])) {
+          return -1;
+        }
+        return 0;
+      })
+        : state.dogs.sort((a, b) => {
+          if (parseInt(a.weight[1]) > parseInt(b.weight[1])) {
+            return -1;
+          }
+          if (parseInt(b.weight[1]) > parseInt(a.weight[1])) {
+            return 1;
+          }
+          return 0;
+        })
+
+      return {
+        ...state,
+        dogs: orderByWeight
+      }
 
     default:
       return state;

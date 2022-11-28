@@ -49,6 +49,12 @@ export function getDogByName(payload) {//dogs by name
         }
     }
 };
+export function getDogByWeight(payload){
+return {
+    type:"ORDER_BY_WEIGHT",
+    payload
+}
+}
 
 
 export function OrderByName(payload) {
@@ -63,4 +69,4 @@ export function postDog(payload) {
         const data = await axios.post("http://localhost:3001/dog", payload); //axios.post("http://localhost:3001/dog"
         return data;
     }
-}
+}        

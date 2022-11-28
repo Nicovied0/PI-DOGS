@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllDogs, OrderByName, getTemperaments } from "../Redux/actions";
+import { getAllDogs, OrderByName, getTemperaments,getDogByWeight } from "../Redux/actions";
 import { Link } from "react-router-dom";
 import style from "../Css/Home.module.css";
 
@@ -31,11 +31,11 @@ const Home = () => {
     setOrden(`Ordenado ${e.target.value}`);
   };
 
-  // const handleOrderByWeight = (e) => {
-  //   e.preventDefault();
-  //   dispatch(OrderByWeight(e.target.value));
-  //   setOrden(`Ordenado ${e.target.value}`);
-  // };
+  const handleOrderByWeight = (e) => {
+    e.preventDefault();
+    dispatch(getDogByWeight(e.target.value));
+    setOrden(`Ordenado ${e.target.value}`);
+  };
 
   if (!allDogs) {
     return <h2>Error 404</h2>;
@@ -56,12 +56,15 @@ const Home = () => {
             <option value="Z-A">Z-A</option>
           </select>
 
-          <select >
+          <select 
+          onChange={(e) =>{
+            handleOrderByWeight(e)
+          }}>
             <option disabled selected defaultValue>
               Filter by weight
             </option>
-            <option value="max_weight">Max</option>
-            <option value="min_weight">Min</option>
+            <option value="MAX_WEIGHT">Max</option>
+            <option value="MIN_WEIGHT">Min</option>
           </select>
           <select>
             <option disabled selected defaultValue>
