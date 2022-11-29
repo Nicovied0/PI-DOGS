@@ -70,3 +70,10 @@ export function postDog(payload) {
         return data;
     }
 }        
+
+export function setLoading(payload) {
+    return{
+      type: "SET_LOADING",
+      payload
+    }
+}

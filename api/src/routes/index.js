@@ -89,7 +89,7 @@ router.get('/dogs', async (req, res) => {
       let dog = allInfo.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
 
       //si tengo el nombre, devuelvo la info, si no mando el error 
-      dog.length ? res.status(200).send(dog) : res.status(404).send('error en dogs/na  me')
+      dog.length ? res.status(200).send(dog) : res.status(404).send('error en dogs/name')
 
     } else {
       //si no paso nombre devuelvo toda la info

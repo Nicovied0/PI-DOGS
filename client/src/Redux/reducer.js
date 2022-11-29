@@ -5,6 +5,7 @@ const intialState = {
   dogs: [],
   allDogs: [],
   details: [],
+  loading:true
 }
 
 const rootReducer = (state = intialState, action) => {
@@ -82,11 +83,29 @@ const rootReducer = (state = intialState, action) => {
           }
           return 0;
         })
-
       return {
         ...state,
         dogs: orderByWeight
       }
+
+      case "SET_LOADING":
+        if(action.payload === false) {
+            return{
+                ...state,
+                loading: false
+            }
+        }
+        else return{
+            ...state,
+            loading: true
+    }
+
+    case "REMOVE_DETAILS":
+        return {
+          ...state,
+          allDogs: [],
+          details: [],
+    };
 
     default:
       return state;
