@@ -4,7 +4,8 @@ import logo from "../Assets/logo.jpg";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({setPage,setInput}) => {
+
   return (
     <div className={style.containerDiv}>
       <div className={style.logoDiv}>
@@ -12,7 +13,7 @@ const NavBar = () => {
         <h1>DOG APP</h1>
       </div>
       <div className={style.logoDiv}>
-        <SearchBar />
+        <SearchBar setPage={setPage} setInput={setInput}/>
       </div>
       <div className={style.logoDiv}>
         <Link to={'/dog'}><button>Crear Perro</button></Link>

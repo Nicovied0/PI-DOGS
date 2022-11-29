@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { showDogDetails } from "../Redux/actions";
+import { showDogDetails,removeDetail,setLoading } from "../Redux/actions";
 import { Link } from "react-router-dom";
 import back from "../Assets/back.png";
 import style from "../Css/Details.module.css";
@@ -12,6 +12,9 @@ const Details = (props) => {
 
   useEffect(() => {
     dispatch(showDogDetails(id));
+    return () =>{
+      dispatch(removeDetail()); //para cuando se desmonta el detail, q no quede cargada la info de la receta anterior.
+     }
   }, [dispatch, id]);
 
   const details = useSelector((state) => state.details);
@@ -37,7 +40,7 @@ const Details = (props) => {
   }
   if (!details) {
     return <h2>Error</h2>;
-  } else if (details.length === 0 || details[0].id != id) {
+  } else if (details.length === 0 ) {
     //utilizo el details en la posicion 0 id si es igual al valor del id pasado por params
     return <Loader />;
   } else {

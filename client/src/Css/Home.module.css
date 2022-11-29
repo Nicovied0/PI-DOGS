@@ -21,11 +21,13 @@
 }
 
 .footerDiv {
-  background-color:#2e66bfd5;
-  position: sticky;
-  top: 93%;
-  margin-top: 5rem ;
-  display: flex;
-  margin-top: auto;
-  flex-direction: column;
+  background-color: #2e66bfd5;
+    position: sticky;
+    top: 93%;
+    margin-top: 5rem;
+    display: flex;
+    margin-top: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

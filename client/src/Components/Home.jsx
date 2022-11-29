@@ -1,20 +1,25 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllDogs, OrderByName, getTemperaments,getDogByWeight } from "../Redux/actions";
+import { getAllDogs, OrderByName, getTemperaments,getDogByWeight,removeDetail,setLoading } from "../Redux/actions";
 import { Link } from "react-router-dom";
 import style from "../Css/Home.module.css";
 
 import Loader from "./Loader";
 import Card from "./Card";
 import NavBar from "./NavBar";
-import Footer from "./Footer";
+import Pagination from "./Pagination";
 
 const Home = () => {
   const dispatch = useDispatch();
   const allDogs = useSelector((e) => e.dogs); //valores del estado global de redux que requiero
   const allTemperaments = useSelector((state) => state.temperaments);
 
+  //Paginado
+  const [page, setPage] = useState(1)
+  const [forPage] = useState(8) //cantidad de perros por pagina 
+  const [input, setInput] = useState(1)
+  const max = Math.ceil(allDogs.length / forPage); // 
   //estados para ordenar
   const [orden, setOrden] = useState("");
 
@@ -22,19 +27,28 @@ const Home = () => {
     //acciones a depachar luego de montar el componente
     dispatch(getAllDogs());
     dispatch(getTemperaments())
+    return () => {
+      dispatch(removeDetail());
+      dispatch(setLoading());
+    }
   }, [dispatch]);
 
   //ordenar por nombre
   const handleOrderByName = (e) => {
     e.preventDefault();
     dispatch(OrderByName(e.target.value));
+    setPage(1)
+    setInput(1)
     setOrden(`Ordenado ${e.target.value}`);
   };
 
   const handleOrderByWeight = (e) => {
     e.preventDefault();
     dispatch(getDogByWeight(e.target.value));
+    setPage(1)
+    setInput(1)
     setOrden(`Ordenado ${e.target.value}`);
+    // console.log(e.target.value)
   };
 
   if (!allDogs) {
@@ -43,7 +57,7 @@ const Home = () => {
     console.log("este es el array", allDogs);
     return (
       <div className={style.home}>
-        <NavBar />
+        <NavBar setPage={setPage} setInput={setInput}/>
 
         <div className={`${style.container_filters}`}>
           <select onChange={(e) =>{
@@ -79,11 +93,18 @@ const Home = () => {
           </select>
         </div>
         <div className={style.footerDiv}>
-          <Footer className={style.footerDiv} />
+          <Pagination className={style.footerDiv} 
+          page={page}
+          setPage={setPage}
+          dogsPerPage={max}
+          input={input}
+          setInput={setInput} />
         </div>
 
         <div className={style.containerBox}>
-          {allDogs?.map((i) => {
+       
+          {allDogs && allDogs
+          .slice((page -1) * forPage, (page -1) * forPage + forPage).map((i) => {
             return (
               <div className={style.containerCard}>
                 <div>

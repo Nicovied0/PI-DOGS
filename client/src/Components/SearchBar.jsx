@@ -4,7 +4,7 @@ import style from "../Css/SearchBar.module.css";
 import { getDogByName } from "../Redux/actions";
 import { useDispatch } from "react-redux";
 
-const SearchBar = () => {
+const SearchBar = ({setPage,setInput}) => {
   const dispatch = useDispatch();
   const [searchDog, setSearchDog] = useState("");
 
@@ -14,6 +14,8 @@ const SearchBar = () => {
     if (searchDog.length === 0) return alert("Ingrese algun nombre");
     dispatch(getDogByName(searchDog));
     setSearchDog("")
+    setPage(1)
+    setInput(1)
     
   };
   const onChangeInput = (e) => {
