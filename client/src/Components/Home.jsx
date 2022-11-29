@@ -82,9 +82,9 @@ const Home = () => {
           </select>
           <select>
             <option disabled selected defaultValue>
-              Temperamentos
+              Temperaments
             </option>
-            <option value="Todos">Todos</option>
+            <option value="ALL">All</option>
             {
                     allTemperaments?.map(temp => (
                         <option value={temp.name}  key={temp.id}>{temp.name}</option>

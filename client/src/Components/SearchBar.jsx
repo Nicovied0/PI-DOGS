@@ -33,7 +33,7 @@ const SearchBar = ({setPage,setInput}) => {
           className={`${style.searchbar}`}
           type="text"
           onChange={onChangeInput}
-          placeholder="Buscar..."
+          placeholder="SEARCH..."
           value={searchDog}
         />
         <input

@@ -16,7 +16,7 @@ const NavBar = ({setPage,setInput}) => {
         <SearchBar setPage={setPage} setInput={setInput}/>
       </div>
       <div className={style.logoDiv}>
-        <Link to={'/dog'}><button>Crear Perro</button></Link>
+        <Link to={'/dog'}><button>Create Dog</button></Link>
       </div>
     </div>
   );
