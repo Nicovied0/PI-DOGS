@@ -64,6 +64,15 @@ export function OrderByName(payload) {
   }
 };
 
+export function filterByTemperaments(payload){
+  return {
+    type: "FILTER_BY_TEMPERAMENTS",
+    payload
+  }
+}
+
+
+
 export function postDog(payload) {
   return async function () {
     const data = await axios.post("http://localhost:3001/dog", payload); //axios.post("http://localhost:3001/dog"

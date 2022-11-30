@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllDogs, OrderByName, getTemperaments,getDogByWeight,removeDetail,setLoading } from "../Redux/actions";
+import { getAllDogs, OrderByName, getTemperaments,getDogByWeight,removeDetail,setLoading,filterByTemperaments } from "../Redux/actions";
 import { Link } from "react-router-dom";
 import style from "../Css/Home.module.css";
 
@@ -12,14 +12,14 @@ import Pagination from "./Pagination";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const allDogs = useSelector((e) => e.dogs); //valores del estado global de redux que requiero
+  const dogs = useSelector((e) => e.dogs); //valores del estado global de redux que requiero
   const allTemperaments = useSelector((state) => state.temperaments);
 
   //Paginado
   const [page, setPage] = useState(1)
   const [forPage] = useState(8) //cantidad de perros por pagina 
   const [input, setInput] = useState(1)
-  const max = Math.ceil(allDogs.length / forPage); // 
+  const max = Math.ceil(dogs.length / forPage); // 
   //estados para ordenar
   const [orden, setOrden] = useState("");
 
@@ -50,11 +50,18 @@ const Home = () => {
     setOrden(`Ordenado ${e.target.value}`);
     // console.log(e.target.value)
   };
+  const filterByTemperaments = (e) => {
+    e.preventDefault()
+    dispatch(filterByTemperaments(e.target.value))
+    setInput(1)
+    setPage(1)
+    setOrden(`Ordenado ${e.target.value}`)
+  }
 
-  if (!allDogs) {
+  if (!dogs) {
     return <h2>Error 404</h2>;
-  } else if (allDogs.length) {
-    console.log("este es el array", allDogs);
+  } else if (dogs.length) {
+    console.log("este es el array", dogs);
     return (
       <div className={style.home}>
         <NavBar setPage={setPage} setInput={setInput}/>
@@ -103,7 +110,7 @@ const Home = () => {
 
         <div className={style.containerBox}>
        
-          {allDogs && allDogs
+          {dogs && dogs
           .slice((page -1) * forPage, (page -1) * forPage + forPage).map((i) => {
             return (
               <div className={style.containerCard}>

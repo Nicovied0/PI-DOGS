@@ -5,7 +5,7 @@ const intialState = {
   dogs: [],
   allDogs: [],
   details: [],
-  loading:true
+  loading: true
 }
 
 const rootReducer = (state = intialState, action) => {
@@ -88,24 +88,40 @@ const rootReducer = (state = intialState, action) => {
         dogs: orderByWeight
       }
 
-      case "SET_LOADING":
-        if(action.payload === false) {
-            return{
-                ...state,
-                loading: false
-            }
-        }
-        else return{
-            ...state,
-            loading: true
-    }
+    case "FILTER_BY_TEMPERAMENTS":
+      let filterDogs = state.allDogs
+      let dogsFilteredBT = filterDogs.filter((e) => { return e.temperaments.find((c) => { return c.name === action.payload }) })
 
-    case "REMOVE_DETAILS":
+      if (action.payload === 'ALL') {
         return {
           ...state,
-          allDogs: [],
-          details: [],
-    };
+          dogs: filterDogs
+        }
+      }
+      return {
+        ...state,
+        dogs: dogsFilteredBT
+      }
+
+
+    case "SET_LOADING":
+      if (action.payload === false) {
+        return {
+          ...state,
+          loading: false
+        }
+      }
+      else return {
+        ...state,
+        loading: true
+      }
+
+    case "REMOVE_DETAILS":
+      return {
+        ...state,
+        allDogs: [],
+        details: [],
+      };
 
     default:
       return state;
