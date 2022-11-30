@@ -9,17 +9,24 @@ import style from "../Css/AddDog.module.css";
 
 const validate = (form) => {
   let errors = {};
-  if (!form.name || form.name.length < 3 || form.name) {
+  if (
+    !form.name ||
+    form.name.length < 3 ||
+    !form.name.trim().replace(/\s+/g, " ") ||
+    !/^[a-zA-Z áéíóúÁÉÍÓÚñÑ\s]*$/.test(form.name) 
+  ) {
     errors.name = "Name is required, it should not contain numbers";
   }
   if (form.min_height >= form.max_height) {
-    errors.height = "The Maximum height must be greater than the Minimum height";
+    errors.height =
+      "The Maximum height must be greater than the Minimum height";
   }
   if (!form.min_height || !form.max_height) {
     errors.height = "Height is required";
   }
   if (form.max_weight <= form.min_weight) {
-    errors.weight = "The Maximum weight must be greater than the Minimum weight";
+    errors.weight =
+      "The Maximum weight must be greater than the Minimum weight";
   }
   if (!form.min_weight || !form.max_weight) {
     errors.weight = "Weight is required";
@@ -27,6 +34,10 @@ const validate = (form) => {
   if (!form.life_span) {
     errors.life_span =
       "Lifespan is required, type only numbers separated by a dash (-)";
+  }
+  if(form.temperaments === []){
+    errors.temperaments= 
+    'Ingrese temperamentos'
   }
   return errors;
 };
@@ -54,7 +65,7 @@ export default function AddDog() {
     max_weight: "",
     life_span: "",
     image: "",
-    temperaments:[],
+    temperaments: [],
   });
 
   useEffect(() => {
@@ -85,7 +96,7 @@ export default function AddDog() {
       max_weight: "",
       life_span: "",
       image: "",
-      temperaments:[],
+      temperaments: [],
     });
   };
 
@@ -103,6 +114,7 @@ export default function AddDog() {
   };
 
   const handleSelect = (e) => {
+    if(!form.temperaments.includes(e.target.value) && e.target.value !== "Temperaments"  ) 
     setForm({
       ...form,
       temperaments: [...form.temperaments, e.target.value],
@@ -239,8 +251,8 @@ export default function AddDog() {
                     {d.name}
                   </option> //key de elementos de temperamentos, eliminar el repetido reserved
                 ))}
-               
               </select>
+              
             </div>
             <div className={style.container_button_add_dog}>
               <button
