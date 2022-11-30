@@ -50,7 +50,7 @@ const Home = () => {
     setOrden(`Ordenado ${e.target.value}`);
     // console.log(e.target.value)
   };
-  const filterByTemperaments = (e) => {
+  const handleFilterByTemperaments = (e) => {
     e.preventDefault()
     dispatch(filterByTemperaments(e.target.value))
     setInput(1)
@@ -87,7 +87,11 @@ const Home = () => {
             <option value="MAX_WEIGHT">Max</option>
             <option value="MIN_WEIGHT">Min</option>
           </select>
-          <select>
+          <select 
+          onChange={(e) => {
+            handleFilterByTemperaments(e)
+          }}
+          >
             <option disabled selected defaultValue>
               Temperaments
             </option>

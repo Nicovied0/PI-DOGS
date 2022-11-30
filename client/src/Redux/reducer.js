@@ -91,6 +91,7 @@ const rootReducer = (state = intialState, action) => {
     case "FILTER_BY_TEMPERAMENTS":
       let filterDogs = state.allDogs
       let dogsFilteredBT = filterDogs.filter((e) => { return e.temperaments.find((c) => { return c.name === action.payload }) })
+      console.log(filterDogs.temperaments)
 
       if (action.payload === 'ALL') {
         return {
