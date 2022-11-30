@@ -9,11 +9,17 @@ import style from "../Css/AddDog.module.css";
 
 const validate = (form) => {
   let errors = {};
-  if (!form.name) {
+  if (!form.name || form.name.length < 3 || form.name) {
     errors.name = "Name is required, it should not contain numbers";
+  }
+  if (form.min_height >= form.max_height) {
+    errors.height = "The Maximum height must be greater than the Minimum height";
   }
   if (!form.min_height || !form.max_height) {
     errors.height = "Height is required";
+  }
+  if (form.max_weight <= form.min_weight) {
+    errors.weight = "The Maximum weight must be greater than the Minimum weight";
   }
   if (!form.min_weight || !form.max_weight) {
     errors.weight = "Weight is required";
