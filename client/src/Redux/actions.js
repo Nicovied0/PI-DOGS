@@ -70,7 +70,12 @@ export function filterByTemperaments(payload){
     payload
   }
 }
-
+export function filterByCreatedIDB(payload){
+  return{
+    type:'FILTER_BY_CREATED_DB',
+    payload
+  }
+}
 
 
 export function postDog(payload) {
