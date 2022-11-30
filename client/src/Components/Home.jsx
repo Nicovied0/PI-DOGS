@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllDogs, OrderByName, getTemperaments,getDogByWeight,removeDetail,setLoading,filterByTemperaments } from "../Redux/actions";
+import { getAllDogs, OrderByName, getTemperaments,getDogByWeight,removeDetail,setLoading,filterByTemperaments,filterByCreatedIDB } from "../Redux/actions";
 import { Link } from "react-router-dom";
 import style from "../Css/Home.module.css";
 
@@ -21,7 +21,7 @@ const Home = () => {
   const [input, setInput] = useState(1)
   const max = Math.ceil(dogs.length / forPage); // 
   //estados para ordenar
-  const [orden, setOrden] = useState("");
+  const [ ,setOrden] = useState("");
 
   useEffect(() => {
     //acciones a depachar luego de montar el componente
@@ -56,6 +56,16 @@ const Home = () => {
     setInput(1)
     setPage(1)
     setOrden(`Ordenado ${e.target.value}`)
+    // console.log(e.target.value)
+  }
+
+  const handleFilterByDB = (e) => {
+    e.preventDefault()
+    dispatch(filterByCreatedIDB(e.target.value))
+    setInput(1)
+    setPage(1)
+    setOrden(`Ordenado ${e.target.value}`)
+    // console.log(e.target.value)
   }
 
   if (!dogs) {
@@ -87,6 +97,18 @@ const Home = () => {
             <option value="MAX_WEIGHT">Max</option>
             <option value="MIN_WEIGHT">Min</option>
           </select>
+
+          <select 
+          onChange={(e) =>{
+            handleFilterByDB(e)
+          }}>
+            <option disabled selected defaultValue>
+              Filter by DB
+            </option>
+            <option value="ALL">ALL</option>
+            <option value="DB">To DB</option>
+          </select>
+
           <select 
           onChange={(e) => {
             handleFilterByTemperaments(e)

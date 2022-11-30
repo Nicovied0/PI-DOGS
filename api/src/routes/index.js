@@ -127,7 +127,7 @@ router.post("/dog", async (req, res) => {
     min_weight,
     max_weight,
     life_span,
-    temperaments,
+    temperaments = [],
     image
   } = req.body
 

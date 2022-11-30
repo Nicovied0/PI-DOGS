@@ -90,8 +90,9 @@ const rootReducer = (state = intialState, action) => {
 
     case "FILTER_BY_TEMPERAMENTS":
       let filterDogs = state.allDogs
-      let dogsFilteredBT = filterDogs.filter((e) => { return e.temperaments.find((c) => { return c.name === action.payload }) })
-      console.log(filterDogs,'soy fiter')
+      let dogsFilteredBT = filterDogs.filter((e) => { return e.temperaments.find((c) => { return c === action.payload}) })
+      // console.log(filterDogs.filter(e => e.temperaments.find(e => {return e === action.payload})), 'spy fuilter')
+
 
       if (action.payload === 'ALL') {
         return {
@@ -106,8 +107,8 @@ const rootReducer = (state = intialState, action) => {
 
       case 'FILTER_BY_CREATED_DB':
         let filterDogsByDb = state.allDogs
-        console.log(filterDogs,"soy")
-        let dogsFilertedBDB = action.payload === 'ALL' ? filterDogsByDb : filterDogsByDb.filter(el => el.createdAt !== undefined)
+        // console.log(filterDogs,"soy")
+        let dogsFilertedBDB = action.payload === 'ALL' ? filterDogsByDb : filterDogsByDb.filter(el => el.createdAt)
         if(action.payload === 'ALL'){
           return{
             ...state,
