@@ -44,6 +44,7 @@ const getApi = async () => {
       temperaments: temperamentArray,
       life_span: el.life_span,
       image: el.image.url,
+      // createdInDb: true
 
     }
   })
@@ -120,14 +121,14 @@ router.get('/dogs/:id', async (req, res) => {
 //post dog
 router.post("/dog", async (req, res) => {
   let {
-   name,
-   min_height,
-   max_height,
-   min_weight,
-   max_weight,
-   life_span,
-   temperaments,
-   image
+    name,
+    min_height,
+    max_height,
+    min_weight,
+    max_weight,
+    life_span,
+    temperaments,
+    image
   } = req.body
 
   const fixedHeight = []
@@ -141,15 +142,15 @@ router.post("/dog", async (req, res) => {
   fixedWeight.push(minWeight, maxWeight)
 
   let dog = await Dog.create({
-   name,
-   height: fixedHeight,
-   weight: fixedWeight,
-   life_span,
-   image: image ? image : "https://www.publicdomainpictures.net/pictures/260000/velka/dog-face-cartoon-illustration.jpg",
+    name,
+    height: fixedHeight,
+    weight: fixedWeight,
+    life_span,
+    image: image ? image : "https://www.publicdomainpictures.net/pictures/260000/velka/dog-face-cartoon-illustration.jpg",
   })
 
   let associatedTemp = await Temperament.findAll({
-      where: { name: temperaments},
+    where: { name: temperaments },
   })
 
   dog.addTemperament(associatedTemp);

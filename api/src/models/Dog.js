@@ -28,13 +28,6 @@ module.exports = (sequelize) => {
     },
     image: {
       type:DataTypes.STRING,
-    },
-    createInDb:{
-      type:DataTypes.BOOLEAN,
-      defaultValue:true,
-      allowNull:false
     }
-
-
   });
 };

@@ -25,6 +25,7 @@ const Details = (props) => {
     temperaments,
     heightDog,
     weightDog,
+    // createInDb,
     lifeSpanDog;
 
   if (details[0]) {
@@ -34,10 +35,11 @@ const Details = (props) => {
     heightDog = details[0].height;
     weightDog = details[0].weight;
     lifeSpanDog = details[0].life_span;
+    // createInDb = details[0].createInDb;
     temperaments = details[0].temperaments
       ? details[0].temperaments
       : details[0].temperaments[0].name;
-    // console.log(details[0].temperaments)
+    console.log(details[0])
   }
 
   // let tempOfDB = []
